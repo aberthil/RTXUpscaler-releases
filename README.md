@@ -1,4 +1,4 @@
-# RTX Upscaler
+﻿# RTX Upscaler
 
 <p align="center">
   <img src="assets/rtx-upscaler.png" alt="RTX Upscaler" width="128" />
@@ -13,17 +13,17 @@
 
 ---
 
-## What is RTX Upscaler? (plain English)
+## What is RTX Upscaler?
 
 **RTX Upscaler makes videos look bigger and cleaner on an NVIDIA GPU.**
 
-Example: a soft **720p** or **1080p** file → **4K**, with optional cleanup (noise, blocks, soft edges) so the enlarge step does not blow up compression junk.
+Example: a soft **720p** or **1080p** file â†’ **4K**, with optional cleanup (noise, blocks, soft edges) so the enlarge step does not blow up compression junk.
 
 You do **not** need command lines or encoding geekery. The app is a Windows window:
 
 1. Drop your video(s) in  
 2. Leave the defaults (or flip a few steps on/off)  
-3. Click **Start** — finished files land in an `\upscale\` folder next to your source  
+3. Click **Start** â€” finished files land in an `\upscale\` folder next to your source  
 
 The heavy lifting is **NVIDIA Video Super Resolution (VSR)** via NVEncC (works on modern RTX cards). Optional **NVvFX** AI filters (heavy denoise / SuperRes) need an **Ada** GPU (compute 8.9, e.g. RTX 40-series). On Blackwell-only machines those NVvFX options stay hidden; **VSR still works**.
 
@@ -33,15 +33,15 @@ Think of it as a **cleanup chain**, then enlarge, then polish:
 
 | Step | In plain words |
 |------|----------------|
-| **Deinterlace** | Fix old TV / 1080i “combing” into normal progressive frames (off if your file is already progressive). |
+| **Deinterlace** | Fix old TV / 1080i â€œcombingâ€ into normal progressive frames (off if your file is already progressive). |
 | **Denoise** | Remove grain and speckles *before* enlarge so noise does not get bigger. |
 | **Upscale** | Grow the picture (VSR AI, or classic math like Lanczos). Default sweet spot: **VSR 3**. |
 | **Sharpen / Deblock / Dehalo / Edge** | Put crispness back, soften blocks, kill halos, optionally pop anime lines. |
 | **Color / Levels / Deband / Grain** | Light tone fixes, banding cleanup, optional film grain so AI results do not look plastic. |
 
-Then it **encodes on the GPU** and keeps your original audio / subs when remuxing. Defaults aim at “drop in and go”: **VSR**, quality **P7**, output beside the source under `\upscale\`.
+Then it **encodes on the GPU** and keeps your original audio / subs when remuxing. Defaults aim at â€œdrop in and goâ€: **VSR**, quality **P7**, output beside the source under `\upscale\`.
 
-Hover any step in the app for a short “what it does / when to use” tip.
+Hover any step in the app for a short â€œwhat it does / when to useâ€ tip.
 
 ---
 
@@ -51,13 +51,13 @@ Hover any step in the app for a short “what it does / when to use” tip.
   <img src="assets/gui-main.png" alt="RTX Upscaler main window" width="480" />
 </p>
 
-<p align="center"><em>Main window — processing order, drop zone, Start.</em></p>
+<p align="center"><em>Main window â€” processing order, drop zone, Start.</em></p>
 
 <p align="center">
   <img src="assets/gui-settings.png" alt="RTX Upscaler Settings" width="420" />
 </p>
 
-<p align="center"><em>Settings — encode defaults, GPU scheduler, per-step processing (with plain-English help).</em></p>
+<p align="center"><em>Settings â€” encode defaults, GPU scheduler, per-step processing (with plain-English help).</em></p>
 
 ---
 
@@ -86,7 +86,7 @@ Hover any step in the app for a short “what it does / when to use” tip.
 
 Installs to `C:\DolbyVisionScripts\RTXUpscaler` by default. Settings / Pushover / queue live in AppData and **survive App Update**. Only a full **Remove** wipes them.
 
-Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **NVvFX** (`nvfx`) tool trees — no scavenger hunt for DLLs after install.
+Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **NVvFX** (`nvfx`) tool trees â€” no scavenger hunt for DLLs after install.
 
 ---
 
@@ -97,7 +97,7 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 | OS | Windows 10/11 **x64** |
 | GPU | **NVIDIA** RTX recommended |
 | VSR (main upscale) | Modern RTX with NGX VSR support |
-| NVvFX extras | **Ada** (compute 8.9) — denoise / artifact / SuperRes; hidden if no Ada in the pool |
+| NVvFX extras | **Ada** (compute 8.9) â€” denoise / artifact / SuperRes; hidden if no Ada in the pool |
 | Disk | Large Setup + room for working files beside your sources |
 
 ---
@@ -108,8 +108,8 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 2. Run Setup (admin)  
 3. Launch **RTX Upscaler** from the Finish page / Start Menu  
 
-**Update the app:** Settings → Check for updates / App update  
-(keeps AppData userdata; Tool updates ≠ App update)
+**Update the app:** Settings â†’ Check for updates / App update  
+(keeps AppData userdata; Tool updates â‰  App update)
 
 ---
 
@@ -117,9 +117,9 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 
 | Path | Notes |
 |------|--------|
-| **VSR 1–4** | NVIDIA Video Super Resolution — default everyday AI enlarge. **VSR 3** = balanced; **VSR 4** = rough sources |
-| **Classic** (spline / Lanczos / …) | Neutral resize, no neural look |
-| **NVvFX SuperRes** | Ada-only neural upscale; **2× / 3× / 4×** only (no “same size”) |
+| **VSR 1â€“4** | NVIDIA Video Super Resolution â€” default everyday AI enlarge. **VSR 3** = balanced; **VSR 4** = rough sources |
+| **Classic** (spline / Lanczos / â€¦) | Neutral resize, no neural look |
+| **NVvFX SuperRes** | Ada-only neural upscale; **2Ã— / 3Ã— / 4Ã—** only (no â€œsame sizeâ€) |
 | **NVvFX Denoise / Artifact** | Ada-only heavy AI cleanup before or instead of light filters |
 
 ---
