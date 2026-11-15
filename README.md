@@ -73,19 +73,57 @@ Hover any step in the app for a short "what it does / when to use" tip.
 
 ---
 
-## Remote progress (v2.0)
+## Remote progress (page + widgets)
 
-Watch the queue from your phone or another PC on the same LAN — **no remote control**, basename only.
+Watch the queue from your phone or another PC on the **same LAN**. Read-only: **basename only**, no remote control, no disk paths.
 
-| Surface | What you get |
+Remote is **on by default**. Open **Settings → Remote progress** for the LAN URL and **QR code** (default port **8766**). Allow Private networks if Windows Firewall asks.
+
+### Web page
+
+Open `http://<pc-ip>:8766/` (or scan the QR). It refreshes on the same cadence as Settings (default **every 2 seconds**, range 1–60).
+
+| Section | What you see |
 |--|--|
-| **Web page** | **Now encoding** (full card per GPU slot) · **Waiting in queue** (# NEXT + order) · **Finished** |
-| **Home widget** | Scriptable (iOS) / Rainmeter / SwiftBar — **full line per running job** (title, %, slot · step · fps · ETA, bar) |
-| **Refresh** | Default **every 2 seconds** (Settings: 1–60s). On by default. |
+| **Now encoding** | One full card **per running GPU slot** — title, %, step, fps, ETA |
+| **Waiting in queue** | Ordered list with **# NEXT** so you know what starts when a slot frees |
+| **Finished** | Recent completed / failed / cancelled jobs |
 
-Open **Settings → Remote progress** for the URL / QR code (default port **8766**). Tap a widget to open the full queue page.
+### Home widgets / menu bar
 
-**Notification** is its own toolbar button (Pushover: each file / queue done). Live percent is the remote page — not a push per tick.
+The page has **Add widget / menu bar**. Same status feed the page uses:
+
+| Client | How |
+|--|--|
+| **iOS / iPadOS (Scriptable)** | On the remote page tap **Copy iOS Scriptable widget script**, paste into a new Scriptable script, add a Home Screen widget. Medium size shows a **full line per running job**. iOS controls how often the widget redraws; open the web page for live 2s updates. |
+| **macOS / Linux (SwiftBar)** | Download `/swiftbar` from the remote server and drop it in your SwiftBar plugin folder. |
+| **Windows (Rainmeter)** | Use the skin from `/rainmeter` (polls `/api/widget.txt`). |
+| **Anything else** | `GET /api/widget` (JSON), `/api/widget.txt` (plain), `/api/widget.png` (card image), `/api/status` (full queue JSON). |
+
+Tap a widget to open the full queue page. Live percent belongs on the **page/widget** — push notifications are for start / done / fail / cancel / queue finished, not every percent tick.
+
+---
+
+## Notifications
+
+Toolbar **Notification** (same style as Settings) configures who gets pings. Pill on/off per service and per event.
+
+### When it fires
+
+| Event | Typical use |
+|--|--|
+| **Job started** | Optional "encode began" ping |
+| **Each file done / failed** | Per-file result |
+| **Cancel / error stop** | Interrupted job |
+| **Queue finished** | Batch summary (done / failed / total time) |
+
+Message templates use placeholders like `{file}`, `{status}`, `{elapsed}`, `{queue}`, `{done}`, `{failed}`.
+
+### Services (enable any mix)
+
+Pushover · ntfy · Pushbullet · SimplePush · PushSafer · Push: Real-time alerts · PushMe · PushDeer · Telegram · Discord (optional rich embeds) · Slack · Matrix · Stoat / Revolt · generic webhook · email · plain log lines
+
+Credentials stay in AppData and survive App Update. Use **Test** in the Notification window before relying on a service.
 
 ---
 
@@ -93,9 +131,9 @@ Open **Settings → Remote progress** for the URL / QR code (default port **8766
 
 | | |
 |--|--|
-| **Latest Setup** | [RTXUpscaler-2.0.1-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.1-Setup.exe) |
+| **Latest Setup** | [RTXUpscaler-2.0.3-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.3-Setup.exe) |
 | **All versions** | [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) |
-| **SHA-256** | [RTXUpscaler-2.0.1-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.1-Setup.exe.sha256) |
+| **SHA-256** | [RTXUpscaler-2.0.3-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.3-Setup.exe.sha256) |
 
 > Prefer the **latest** tag always:  
 > https://github.com/aberthil/RTXUpscaler-releases/releases/latest
@@ -115,6 +153,7 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 | VSR (main upscale) | Modern RTX with NGX VSR support |
 | NVvFX extras | **Ada** (compute 8.9) - denoise / artifact / SuperRes; hidden if no Ada in the pool |
 | Disk | Large Setup + room for working files beside your sources |
+| Remote / widgets | Same LAN as the encode PC (Wi-Fi / Ethernet) |
 
 ---
 
@@ -142,10 +181,16 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 
 ## What's New
 
-### v2.0.1
+### v2.0.3
 
-- **Remote progress** — LAN status page + widgets; full line per running job; queue Waiting / Finished; poll every 2s (configurable); **on by default**
-- ****Notification** toolbar button — full Tekno-parity services (Pushover, Telegram, Discord, ntfy, Slack, Matrix, Email, Stoat, Pushbullet, SimplePush, PushSafer, PushMe, PushDeer, Webhook) + queue-done
+- **Notification** window uses the same **pill on/off** switches as Settings (not square checkboxes)
+- Settings **QR code** for Remote progress (segno packaged in the Setup)
+- Project page: full **Remote page + widgets** and **multi-service Notification** docs
+
+### v2.0.1 / v2.0.0
+
+- **Remote progress** — LAN status page + Scriptable / SwiftBar / Rainmeter widgets; full line per running job; Waiting / Finished; poll every 2s (1–60); **on by default**; QR in Settings
+- **Notification** toolbar button — Tekno-parity multi-service stack (Pushover, Telegram, Discord, ntfy, Slack, Matrix, Email, Stoat, Pushbullet, SimplePush, PushSafer, PushMe, PushDeer, Webhook, …) with start / each-file / cancel / queue-done
 - Queue-aware remote UI for parallel GPU slots
 - Prior 1.0.x encode/mux reliability fixes retained (interlace frame counts, attached_pic track pick, mov_text→ASS, near-complete exit accept)
 
@@ -165,4 +210,3 @@ See the [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) pa
 ## License / support
 
 Windows installers for end users. Problems with a specific Setup: note the release tag and contact the publisher (`aberthil`).
-
