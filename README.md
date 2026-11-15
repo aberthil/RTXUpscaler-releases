@@ -1,4 +1,4 @@
-# RTX Upscaler
+﻿# RTX Upscaler
 
 <p align="center">
   <img src="assets/rtx-upscaler.png" alt="RTX Upscaler" width="128" />
@@ -93,9 +93,9 @@ Open **Settings → Remote progress** for the URL / QR code (default port **8766
 
 | | |
 |--|--|
-| **Latest Setup** | [RTXUpscaler-2.0.0-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.0-Setup.exe) |
+| **Latest Setup** | [RTXUpscaler-2.0.1-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.1-Setup.exe) |
 | **All versions** | [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) |
-| **SHA-256** | [RTXUpscaler-2.0.0-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.0-Setup.exe.sha256) |
+| **SHA-256** | [RTXUpscaler-2.0.1-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.1-Setup.exe.sha256) |
 
 > Prefer the **latest** tag always:  
 > https://github.com/aberthil/RTXUpscaler-releases/releases/latest
@@ -142,10 +142,10 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 
 ## What's New
 
-### v2.0.0
+### v2.0.1
 
 - **Remote progress** — LAN status page + widgets; full line per running job; queue Waiting / Finished; poll every 2s (configurable); **on by default**
-- **Notification** toolbar button — Pushover moved out of Settings (Tekno-style)
+- ****Notification** toolbar button — full Tekno-parity services (Pushover, Telegram, Discord, ntfy, Slack, Matrix, Email, Stoat, Pushbullet, SimplePush, PushSafer, PushMe, PushDeer, Webhook) + queue-done
 - Queue-aware remote UI for parallel GPU slots
 - Prior 1.0.x encode/mux reliability fixes retained (interlace frame counts, attached_pic track pick, mov_text→ASS, near-complete exit accept)
 
@@ -165,3 +165,4 @@ See the [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) pa
 ## License / support
 
 Windows installers for end users. Problems with a specific Setup: note the release tag and contact the publisher (`aberthil`).
+
