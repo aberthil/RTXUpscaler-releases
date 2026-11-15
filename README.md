@@ -69,7 +69,23 @@ Hover any step in the app for a short "what it does / when to use" tip.
 4. **+ Add to Queue** (or **Add All**), then **Start**.
 5. When it finishes, open the `\upscale\` folder next to your source (or your custom destination).
 
-**Queue / Log / Settings** are top-right. Pause and Cancel work while a job runs. Multi-GPU machines can auto-schedule parallel jobs; NVvFX jobs route to an Ada card when one is present.
+**Queue / Log / Notification / Settings** are top-right. Pause and Cancel work while a job runs. Multi-GPU machines can auto-schedule parallel jobs; NVvFX jobs route to an Ada card when one is present.
+
+---
+
+## Remote progress (v2.0)
+
+Watch the queue from your phone or another PC on the same LAN — **no remote control**, basename only.
+
+| Surface | What you get |
+|--|--|
+| **Web page** | **Now encoding** (full card per GPU slot) · **Waiting in queue** (# NEXT + order) · **Finished** |
+| **Home widget** | Scriptable (iOS) / Rainmeter / SwiftBar — **full line per running job** (title, %, slot · step · fps · ETA, bar) |
+| **Refresh** | Default **every 2 seconds** (Settings: 1–60s). On by default. |
+
+Open **Settings → Remote progress** for the URL / QR code (default port **8766**). Tap a widget to open the full queue page.
+
+**Notification** is its own toolbar button (Pushover: each file / queue done). Live percent is the remote page — not a push per tick.
 
 ---
 
@@ -77,14 +93,14 @@ Hover any step in the app for a short "what it does / when to use" tip.
 
 | | |
 |--|--|
-| **Latest Setup** | [RTXUpscaler-1.0.8-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-1.0.8-Setup.exe) |
+| **Latest Setup** | [RTXUpscaler-2.0.0-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.0-Setup.exe) |
 | **All versions** | [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) |
-| **SHA-256** | [RTXUpscaler-1.0.8-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-1.0.8-Setup.exe.sha256) |
+| **SHA-256** | [RTXUpscaler-2.0.0-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.0-Setup.exe.sha256) |
 
 > Prefer the **latest** tag always:  
 > https://github.com/aberthil/RTXUpscaler-releases/releases/latest
 
-Installs to `C:\DolbyVisionScripts\RTXUpscaler` by default. Settings / Pushover / queue live in AppData and **survive App Update**. Only a full **Remove** wipes them.
+Installs to `C:\DolbyVisionScripts\RTXUpscaler` by default. Settings / Notification / queue / remote prefs live in AppData and **survive App Update**. Only a full **Remove** wipes them.
 
 Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **NVvFX** (`nvfx`) tool trees - no scavenger hunt for DLLs after install.
 
@@ -126,7 +142,14 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 
 ## What's New
 
-### v1.0.8
+### v2.0.0
+
+- **Remote progress** — LAN status page + widgets; full line per running job; queue Waiting / Finished; poll every 2s (configurable); **on by default**
+- **Notification** toolbar button — Pushover moved out of Settings (Tekno-style)
+- Queue-aware remote UI for parallel GPU slots
+- Prior 1.0.x encode/mux reliability fixes retained (interlace frame counts, attached_pic track pick, mov_text→ASS, near-complete exit accept)
+
+### Earlier
 
 See the [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) page for notes on each Setup build.
 
