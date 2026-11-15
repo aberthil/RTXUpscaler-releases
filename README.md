@@ -77,7 +77,7 @@ Hover any step in the app for a short "what it does / when to use" tip.
 
 Watch the queue from your phone or another PC on the **same LAN**. Read-only: **basename only**, no remote control, no disk paths.
 
-Remote is **on by default**. Open **Settings → Remote progress** for the LAN URL and **QR code** (default port **8766**). Allow Private networks if Windows Firewall asks.
+Remote is **on by default**. Open **Settings → Remote progress** for the LAN URL and **QR code** (default port **8766**). Setup allows Private/Domain LAN for the app so Windows should **not** prompt for network access.
 
 ### Web page
 
@@ -131,9 +131,9 @@ Credentials stay in AppData and survive App Update. Use **Test** in the Notifica
 
 | | |
 |--|--|
-| **Latest Setup** | [RTXUpscaler-2.0.3-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.3-Setup.exe) |
+| **Latest Setup** | [RTXUpscaler-2.0.4-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.4-Setup.exe) |
 | **All versions** | [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) |
-| **SHA-256** | [RTXUpscaler-2.0.3-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.3-Setup.exe.sha256) |
+| **SHA-256** | [RTXUpscaler-2.0.4-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.4-Setup.exe.sha256) |
 
 > Prefer the **latest** tag always:  
 > https://github.com/aberthil/RTXUpscaler-releases/releases/latest
@@ -180,6 +180,10 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 ---
 
 ## What's New
+
+### v2.0.4
+
+- Remote progress: **no Windows LAN access popup** — Setup adds a Private/Domain firewall allow (remote stays on by default)
 
 ### v2.0.3
 
