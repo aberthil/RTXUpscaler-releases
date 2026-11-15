@@ -73,13 +73,28 @@ Hover any step in the app for a short "what it does / when to use" tip.
 
 ---
 
-## Remote progress (page + widgets)
+## Remote progress (LAN page + PushWard live card)
 
-Watch the queue from your phone or another PC on the **same LAN**. Read-only: **basename only**, no remote control, no disk paths.
+Watch the queue from your phone or another PC. Read-only: **basename only**, no remote control, no disk paths.
 
 Remote is **on by default**. Open **Settings → Remote progress** for the LAN URL and **QR code** (default port **8766**). Setup allows Private/Domain LAN for the app so Windows should **not** prompt for network access.
 
-### Web page
+### PushWard Live Activity / Live Update (works off LAN)
+
+Best glanceable progress when you are not on the same Wi‑Fi as the encode PC.
+
+| | |
+|--|--|
+| **What you get** | **One** Live Activity / Live Update card for the whole queue — lead job **% · fps · elapsed**, plus running / waiting counts |
+| **Tap** | Opens the full LAN queue page (when you are back on the same network) |
+| **iPhone** | Lock Screen / Dynamic Island via **PushWard** (iOS 26+). Enable **Live Activities** and **More Frequent Updates** in PushWard Settings |
+| **Android** | **Live Update** in the notification shade via **PushWard** (Android 12+) |
+| **Setup** | Settings → Remote progress → enable **PushWard Live Activity** → paste your PushWard integration key (`hlk_…`) |
+| **Same key** | One `hlk_…` key covers iPhone + Android, and optional one-shot alerts under **Notification → Formatted text → PushWard** |
+
+Free PushWard quotas apply (Live Activity / Live Update updates per month). This path is for **live progress** — not a replacement for the full queue page.
+
+### Web page (same LAN)
 
 Open `http://<pc-ip>:8766/` (or scan the QR). It refreshes on the same cadence as Settings (default **every 2 seconds**, range 1–60).
 
@@ -89,18 +104,20 @@ Open `http://<pc-ip>:8766/` (or scan the QR). It refreshes on the same cadence a
 | **Waiting in queue** | Ordered list with **# NEXT** so you know what starts when a slot frees |
 | **Finished** | Recent completed / failed / cancelled jobs |
 
-### Home widgets / menu bar
+### Add Tracker (home / menu bar / top bar)
 
-The page has **Add widget / menu bar**. Same status feed the page uses:
+On the remote page open **Add RTX Upscaler Tracker**. Same status feed the page uses:
 
 | Client | How |
 |--|--|
-| **iOS / iPadOS (Scriptable)** | On the remote page tap **Copy iOS Scriptable widget script**, paste into a new Scriptable script, add a Home Screen widget. Medium size shows a **full line per running job**. iOS controls how often the widget redraws; open the web page for live 2s updates. |
-| **macOS / Linux (SwiftBar)** | Download `/swiftbar` from the remote server and drop it in your SwiftBar plugin folder. |
-| **Windows (Rainmeter)** | Use the skin from `/rainmeter` (polls `/api/widget.txt`). |
-| **Anything else** | `GET /api/widget` (JSON), `/api/widget.txt` (plain), `/api/widget.png` (card image), `/api/status` (full queue JSON). |
+| **iOS / iPadOS** | **PushWard Live Activity** (above), or Safari **Add to Home Screen** for the full live page |
+| **Android** | **PushWard Live Update** (above), or download **`RTX Upscaler.kwgt`** for KWGT (tap **↻ Refresh** to force-update; no browser) |
+| **macOS (SwiftBar)** | Download `/swiftbar` and drop it in your SwiftBar plugin folder |
+| **Windows (Rainmeter)** | Use the skin from `/rainmeter` (polls `/api/widget.txt`) |
+| **Linux** | Chrome/Chromium **Install page as app**, terminal `watch` + `/api/widget.txt`, or **Argos** (GNOME) / **Kargos** (KDE) using the same `/swiftbar` plugin |
+| **Anything else** | `GET /api/widget` (JSON), `/api/widget.txt` (plain), `/api/widget.png` (card image), `/api/status` (full queue JSON) |
 
-Tap a widget to open the full queue page. Live percent belongs on the **page/widget** — push notifications are for start / done / fail / cancel / queue finished, not every percent tick.
+Tap a tracker / card to open the full queue page when you can reach the PC. **Live percent** on phones off-LAN is PushWard; LAN page/widgets poll locally. One-shot **Notification** pings are for start / done / fail / cancel / queue finished — not every percent tick.
 
 ---
 
@@ -121,7 +138,7 @@ Message templates use placeholders like `{file}`, `{status}`, `{elapsed}`, `{que
 
 ### Services (enable any mix)
 
-Pushover · ntfy · Pushbullet · SimplePush · PushSafer · Push: Real-time alerts · PushMe · PushDeer · Telegram · Discord (optional rich embeds) · Slack · Matrix · Stoat / Revolt · generic webhook · email · plain log lines
+**PushWard** (Formatted text — same `hlk_…` key as Live Activity) · Pushover · ntfy · Pushbullet · SimplePush · PushSafer · Push: Real-time alerts · PushMe · PushDeer · Telegram · Discord (optional rich embeds) · Slack · Matrix · Stoat / Revolt · generic webhook · email · plain log lines
 
 Credentials stay in AppData and survive App Update. Use **Test** in the Notification window before relying on a service.
 
@@ -131,9 +148,9 @@ Credentials stay in AppData and survive App Update. Use **Test** in the Notifica
 
 | | |
 |--|--|
-| **Latest Setup** | [RTXUpscaler-2.0.4-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.4-Setup.exe) |
+| **Latest Setup** | [RTXUpscaler-2.0.9-Setup.exe](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.9-Setup.exe) |
 | **All versions** | [Releases](https://github.com/aberthil/RTXUpscaler-releases/releases) |
-| **SHA-256** | [RTXUpscaler-2.0.4-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.4-Setup.exe.sha256) |
+| **SHA-256** | [RTXUpscaler-2.0.9-Setup.exe.sha256](https://github.com/aberthil/RTXUpscaler-releases/releases/latest/download/RTXUpscaler-2.0.9-Setup.exe.sha256) |
 
 > Prefer the **latest** tag always:  
 > https://github.com/aberthil/RTXUpscaler-releases/releases/latest
@@ -180,6 +197,12 @@ Setup is large (~1.5 GB) because it ships the owned **VSR** (`nvcc_libs`) and **
 ---
 
 ## What's New
+
+### v2.0.9
+
+- **PushWard Live Activity / Live Update** — one queue progress card on iPhone (Lock Screen / Dynamic Island) and Android (notification Live Update); tap opens the LAN page
+- Same `hlk_…` key under **Remote progress** (live card) and **Notification → Formatted text → PushWard** (one-shot alerts)
+- **Add Tracker** tabs match Tekno (iOS / Android / macOS / Windows / **Linux** with browser + terminal + Argos)
 
 ### v2.0.4
 
